@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pcs property set stonith-enabled=false
+pcs property set no-quorum-policy=ignore
+pcs resource op defaults resource-stickiness=INFINITY migration-threshold=1
+pcs resource create vip1 ocf:heartbeat:IPaddr2 ip=<%= @vip_ipaddr %> cidr_netmask=<%= @vip_netmask %> nic=eth0 op monitor interval=20s
+
