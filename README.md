@@ -1,5 +1,8 @@
 pm_corosync01 Cookbook
 ======================
+ペースメーカーでHA構成を組むためのクックブック
+
+
 TODO: Enter the cookbook description here.
 
 e.g.
