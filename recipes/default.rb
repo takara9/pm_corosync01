@@ -67,7 +67,7 @@ end
 
 
 #
-# CentOS 7 はディレクトリ無し
+# CentOS 7 はディレクトリ無いのでとばす
 #
 if node['platform_version'].to_i != 7 then
   template "/etc/corosync/service.d/pcmk" do
