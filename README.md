@@ -8,8 +8,15 @@ pm_corosync01 Cookbook
 ```
 # curl -L https://www.opscode.com/chef/install.sh | bash
 # knife cookbook create dummy -o /var/chef/cookbooks
-# git -C /var/chef/cookbooks clone https://github.com/takara9/pm_corosync01
+# cd /var/chef/cookbooks
+# git clone https://github.com/takara9/pm_corosync01
 # chef-solo -o pm_corosync01
+```
+
+
+
+```
+# git -C /var/chef/cookbooks clone https://github.com/takara9/pm_corosync01
 ```
 
 
