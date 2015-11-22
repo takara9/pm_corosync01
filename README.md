@@ -2,6 +2,17 @@ pm_corosync01 Cookbook
 ======================
 ペースメーカーでHA構成を組むためのクックブック
 
+使い方
+------------
+
+```
+# curl -L https://www.opscode.com/chef/install.sh | bash
+# knife cookbook create dummy -o /var/chef/cookbooks
+# git -C /var/chef/cookbooks clone https://github.com/takara9/pm_corosync01
+# chef-solo -o pm_corosync01
+```
+
+
 
 TODO: Enter the cookbook description here.
 
