@@ -28,9 +28,6 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
 
 
 
-
-
-
 アトリビュ−ト
 ------------
 ネットワークの設定、
@@ -44,34 +41,34 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>["network_addr"]</tt></td>
+    <td>["network_addr"]</td>
     <td>サブネット</td>
     <td>クラスタメンバーが接続するネット</td>
-    <td>NULL 必須</td>
+    <td>NULL (必須)</td>
   </tr>
   <tr>
-    <td><tt>["multicast_addr"]</tt></td>
+    <td>["multicast_addr"]</td>
     <td>マルチキャストアドレス</td>
     <td>クラスタメンバーは要同一アドレス</td>
-    <td>NULL 必須</td>
+    <td>NULL (必須)</td>
   </tr>
   <tr>
-    <td><tt>["multicast_port"]</tt></td>
+    <td>["multicast_port"]</td>
     <td>マルチキャストポート</td>
     <td>クラスタメンバーは要同一ポート</td>
-    <td>NULL 必須</td>
+    <td>NULL (必須)</td>
   </tr>
   <tr>
-    <td><tt>["vip_ipaddr"]</tt></td>
+    <td>["vip_ipaddr"]</td>
     <td>IPアドレス</td>
     <td>ポータルIPから割り当て</td>
-    <td>NULL 必須</td>
+    <td>NULL (必須)</td>
   </tr>
   <tr>
-    <td><tt>["vip_netmask"]</tt></td>
+    <td>["vip_netmask"]</td>
     <td>サブネットマスク</td>
-    <td>ポータルIPのサブネット</td>
-    <td>NULL 必須</td>
+    <td>ポータルIPのサブネットマスクをセット</td>
+    <td>NULL (必須)</td>
   </tr>
 </table>
 
@@ -79,30 +76,25 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
 
 使い方
 ------------
-最小限の
-
+最小限の操作で適用する方法です。この操作は、各サーバーにログインして操作が必要です。
 
 ```
 # curl -L https://www.opscode.com/chef/install.sh | bash
 # knife cookbook create dummy -o /var/chef/cookbooks
 # cd /var/chef/cookbooks
 # git clone https://github.com/takara9/pm_corosync01
+```
+アトリビュートを編集して、次のコマンドでサーバーに適用する。
+
+```
 # chef-solo -o pm_corosync01
 ```
 
+Knife solo, Knife zoro, Knife + Chef server を利用して、リモートや集中管理で適用する場合は、それぞれのコマンドの使用法に従って実施してください。
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Maho Takara (高良 真穂)
+License: see LICENSE File
