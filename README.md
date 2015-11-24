@@ -30,7 +30,7 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
 
 アトリビュ−ト
 ------------
-ネットワークの設定、
+VIPを含むネットワーク関連の設定が必須です。
 
 #### pm_corosync01::default
 <table>
@@ -60,7 +60,7 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
   </tr>
   <tr>
     <td>["vip_ipaddr"]</td>
-    <td>IPアドレス</td>
+    <td>仮想IPアドレス</td>
     <td>ポータルIPから割り当て</td>
     <td>NULL (必須)</td>
   </tr>
@@ -96,5 +96,7 @@ Knife solo, Knife zoro, Knife + Chef server を利用して、リモートや集
 
 License and Authors
 -------------------
+
 Authors: Maho Takara (高良 真穂)
+
 License: see LICENSE File
