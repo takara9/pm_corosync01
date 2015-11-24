@@ -1,9 +1,28 @@
 pm_corosync01 Cookbook
 ======================
-ペースメーカーでHA構成を組むためのクックブック
+CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタンバイのクラスタを作るクックブックです。
+
+
+システム構成
+------------
+![System Configuration](doc/Pacemaker_config.png)
+
+
+前提条件
+------------
+OS
+
+サーバー２台
+
+ネットワーク
+
+
+
 
 使い方
 ------------
+最小限の
+
 
 ```
 # curl -L https://www.opscode.com/chef/install.sh | bash
@@ -15,30 +34,10 @@ pm_corosync01 Cookbook
 
 
 
-```
-# git -C /var/chef/cookbooks clone https://github.com/takara9/pm_corosync01
-```
-
-
-
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
-
-Requirements
+アトリビュ−ト
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+ネットワークの設定、
 
-e.g.
-#### packages
-- `toaster` - pm_corosync01 needs toaster to brown your bagel.
-
-Attributes
-----------
-TODO: List your cookbook attributes here.
-
-e.g.
 #### pm_corosync01::default
 <table>
   <tr>
@@ -55,22 +54,7 @@ e.g.
   </tr>
 </table>
 
-Usage
------
-#### pm_corosync01::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `pm_corosync01` in your node's `run_list`:
-
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[pm_corosync01]"
-  ]
-}
-```
 
 Contributing
 ------------
