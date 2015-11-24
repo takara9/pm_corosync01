@@ -10,31 +10,24 @@ CentOS 6.x/7.x で Pacemaker と Corosync を使ってアクティブ・スタ�
 ![System Configuration](doc/Pacemaker_config.png)
 
 
-
-
 前提条件
 ------------
-OS
-
-サーバー２台
-
-ネットワーク
+**オペレーティングシステム**
+* CentOS 7.x - Minimal Install (64 bit) 
+* CentOS 6.x - Minimal Install (64 bit) 
 
 
+**サーバー**
+* 主サーバー　(アクティブ）
+* 待機サーバー (スタンバイ)
 
 
-使い方
-------------
-最小限の
+**ネットワーク**
+* ポータブルサブネットをオーダーして、同じVLANに割り当て
+* VLAN Spanning : ON 
 
 
-```
-# curl -L https://www.opscode.com/chef/install.sh | bash
-# knife cookbook create dummy -o /var/chef/cookbooks
-# cd /var/chef/cookbooks
-# git clone https://github.com/takara9/pm_corosync01
-# chef-solo -o pm_corosync01
-```
+
 
 
 
@@ -51,13 +44,51 @@ OS
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['pm_corosync01']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>["network_addr"]</tt></td>
+    <td>サブネット</td>
+    <td>クラスタメンバーが接続するネット</td>
+    <td>NULL 必須</td>
+  </tr>
+  <tr>
+    <td><tt>["multicast_addr"]</tt></td>
+    <td>マルチキャストアドレス</td>
+    <td>クラスタメンバーは要同一アドレス</td>
+    <td>NULL 必須</td>
+  </tr>
+  <tr>
+    <td><tt>["multicast_port"]</tt></td>
+    <td>マルチキャストポート</td>
+    <td>クラスタメンバーは要同一ポート</td>
+    <td>NULL 必須</td>
+  </tr>
+  <tr>
+    <td><tt>["vip_ipaddr"]</tt></td>
+    <td>IPアドレス</td>
+    <td>ポータルIPから割り当て</td>
+    <td>NULL 必須</td>
+  </tr>
+  <tr>
+    <td><tt>["vip_netmask"]</tt></td>
+    <td>サブネットマスク</td>
+    <td>ポータルIPのサブネット</td>
+    <td>NULL 必須</td>
   </tr>
 </table>
 
+
+
+使い方
+------------
+最小限の
+
+
+```
+# curl -L https://www.opscode.com/chef/install.sh | bash
+# knife cookbook create dummy -o /var/chef/cookbooks
+# cd /var/chef/cookbooks
+# git clone https://github.com/takara9/pm_corosync01
+# chef-solo -o pm_corosync01
+```
 
 
 Contributing
