@@ -35,7 +35,7 @@ pcs cluster standby db2
 pcs cluster cib mysql_repl
 
 pcs -f mysql_repl resource create mysql1 ocf:heartbeat:mysql \
-     binary=/usr/bin/mysqld_safe pid=/var/run/mysqld/mysqld.pid \
+     binary=/usr/bin/mysqld_safe pid=/var/run/mysql/mysqld.pid \
      datadir="/data1" config="/etc/mysql/my.cnf" \
      user="mysql" group="mysql" \
      replication_user=replica replication_passwd=replica \
@@ -45,19 +45,17 @@ pcs -f mysql_repl resource create mysql1 ocf:heartbeat:mysql \
 #pcs -f mysql_repl resource update mysql1 replication_passwd=replica
 pcs -f mysql_repl resource add_operation mysql1 start interval=0 timeout=120s
 pcs -f mysql_repl resource add_operation mysql1 stop interval=0 timeout=120s
-#pcs -f mysql_repl resource add_operation mysql1 monitor interval=20s timeout=30s
-#pcs -f mysql_repl resource add_operation mysql1 monitor interval=10s role=Master timeout=30s
-#pcs -f mysql_repl resource add_operation mysql1 monitor interval=30s role=Slave timeout=30s
-#pcs -f mysql_repl resource add_operation mysql1 promote interval=0 timeout=120s
-#pcs -f mysql_repl resource add_operation mysql1 demote interval=0 timeout=120s
-#pcs -f mysql_repl resource add_operation mysql1 notify interval=0 timeout=90s
+pcs -f mysql_repl resource add_operation mysql1 monitor interval=20s timeout=30s
+pcs -f mysql_repl resource add_operation mysql1 monitor interval=10s role=Master timeout=30s
+pcs -f mysql_repl resource add_operation mysql1 monitor interval=30s role=Slave timeout=30s
+pcs -f mysql_repl resource add_operation mysql1 promote interval=0 timeout=120s
+pcs -f mysql_repl resource add_operation mysql1 demote interval=0 timeout=120s
+pcs -f mysql_repl resource add_operation mysql1 notify interval=0 timeout=90s
 
 pcs cluster cib-push mysql_repl
 
 pcs resource master mysql-clone mysql1 master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
 
-pcs property set stonith-enabled=false
-pcs property set no-quorum-policy=ignore
 pcs property
 pcs resource enable mysql1
 
