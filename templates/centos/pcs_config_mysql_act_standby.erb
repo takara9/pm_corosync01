@@ -1,0 +1,32 @@
+#!/bin/bash
+
+pcs property set stonith-enabled=false
+pcs property set no-quorum-policy=ignore
+pcs resource op defaults resource-stickiness=INFINITY migration-threshold=1
+
+pcs resource create vip1 ocf:heartbeat:IPaddr2 \
+  ip=<%= @vip_ipaddr %> cidr_netmask=<%= @vip_netmask %> nic=eth0 \
+  op monitor interval=20s \
+  --group svc1
+
+# iSCSI Active-Standby
+pcs resource create vfs1 ocf:heartbeat:Filesystem \
+  device=/dev/mapper/iscsimp1 directory=/data1 fstype=ext4 \
+  --group svc1
+
+pcs resource create mysql1 ocf:heartbeat:mysql \
+  params binary="/usr/sbin/mysqld_safe" \
+         config="/etc/mysql/my.cnf" \
+         datadir="/data1" \
+         pid="/var/run/mysqld/mysql.pid" \
+         socket="/var/run/mysqld/mysql.sock" \
+         log="/var/log/mysql/error.log" \
+         additional_parameters="--bind-address=<%= @vip_ipaddr %>" \
+  op start timeout="120" \
+  op stop timeout="120" \
+  op monitor timeout="30" interval="10" \
+  --group svc1
+
+
+
+
