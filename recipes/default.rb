@@ -46,6 +46,7 @@ when 'centos','redhat'
   %w{
       corosync 
       pacemaker 
+      cman
       pcs
       ntp
   }.each do |pkgname|
