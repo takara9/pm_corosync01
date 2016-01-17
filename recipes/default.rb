@@ -135,29 +135,29 @@ when 'ubuntu'
   end
 
 when 'centos','redhat'
-  #execute "pcs_execute" do
-  #  command "/root/#{resource}"
-  #  action :run
-  #  ignore_failure true
-  #end
+  execute "pcs_execute" do
+    command "/root/#{resource}"
+    action :run
+    ignore_failure true
+  end
 
   # アクティブ・スタンバイ
-  template "/root/pcs_config_mysql_act_standby" do
-    owner "root"
-    group "root"
-    mode 0744
-    source "pcs_config_mysql_act_standby.erb"
-    action :create
-  end
+  #template "/root/pcs_config_mysql_act_standby" do
+  #  owner "root"
+  #  group "root"
+  #  mode 0744
+  #  source "pcs_config_mysql_act_standby.erb"
+  #  action :create
+  #end
 
   # マスタースレーブ
-  template "/root/pcs_config_mysql_mst_repl" do
-    owner "root"
-    group "root"
-    mode 0744
-    source "pcs_config_mysql_mst_repl.erb"
-    action :create
-  end
+  #template "/root/pcs_config_mysql_mst_repl" do
+  #  owner "root"
+  #  group "root"
+  #  mode 0744
+  #  source "pcs_config_mysql_mst_repl.erb"
+  #  action :create
+  #end
 
 end
 
