@@ -140,23 +140,6 @@ when 'centos','redhat'
     action :run
     ignore_failure true
   end
-
-  #template "/root/pcs_config_mysql_act_standby" do
-  #  owner "root"
-  #  group "root"
-  #  mode 0744
-  #  source "pcs_config_mysql_act_standby.erb"
-  #  action :create
-  #end
-
-  #template "/root/pcs_config_mysql_mst_repl" do
-  #  owner "root"
-  #  group "root"
-  #  mode 0744
-  #  source "pcs_config_mysql_mst_repl.erb"
-  #  action :create
-  #end
-
 end
 
 
