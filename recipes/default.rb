@@ -141,6 +141,7 @@ when 'centos','redhat'
   #  ignore_failure true
   #end
 
+  # アクティブ・スタンバイ
   template "/root/pcs_config_mysql_act_standby" do
     owner "root"
     group "root"
@@ -149,6 +150,7 @@ when 'centos','redhat'
     action :create
   end
 
+  # マスタースレーブ
   template "/root/pcs_config_mysql_mst_repl" do
     owner "root"
     group "root"
